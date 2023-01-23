@@ -1,6 +1,5 @@
 <script>
     
-    import { env } from '$env/dynamic/private'
     import Icon from '@iconify/svelte';
     export let data;
     const { links } = data;
