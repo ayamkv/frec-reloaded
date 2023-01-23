@@ -1,4 +1,6 @@
 <script>
+    
+    import { env } from '$env/dynamic/private'
     import Icon from '@iconify/svelte';
     export let data;
     const { links } = data;
@@ -10,16 +12,16 @@
 
 <header>
     <a
-      href={data.social_link}
+      href={data.profile.social_link}
       target="_blank"
       rel="noreferrer"
     >
       <img
-        src="https://i.ibb.co/9YXS9mm/181705067-778968996323420-3732982900798484511-n.jpg"
-        alt={data.username}
+        src="https://ee2poimw.directus.app/assets/{data.profile.profile_image}"
+        alt={data.profile.username}
       />
-      <h1>{data.username}</h1>
-      <p>{data.description}</p>
+      <h1>{data.profile.username}</h1>
+      <p>{data.profile.description}</p>
     </a>
   </header>
 
@@ -42,9 +44,33 @@
     </ul>
 </section>
 
-
+<p class="codeby">made with <a href="https://github.com/frec-reloaded"><b>Linko</b></a> </p>
+<p class="codebyp">by @raaharja</p>
 <style>
- 
+    .codeby {
+        margin: 8em 1em 0em 0em;
+        text-align: center;
+        font-weight: 500;
+        line-height: 0;
+        transition: all 0.2s ease-in-out;
+    }
+    .codebyp {
+        font-size: 0.75em;
+        margin-bottom: 4em;
+        text-align: center;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .codeby a {
+        color: #9429ff;
+    }
+
+    .codeby:hover, .codebyp:hover {
+        transform: scale(1.1);
+        color: #6929ffcf;
+    }
+    
+
     header img {
         height: 124px;
         width: 124px;
@@ -61,6 +87,7 @@
     }
     header h1 {
         line-height: 0.1em;
+        transition: all 0.1s linear;
     }
     header p {
         font-size: 120%;
@@ -69,7 +96,8 @@
     }
 
 
-    header p:hover {
+    header h1:hover {
+        transform: scale(1.1);
         color: #947edf;
 
     }
@@ -80,6 +108,12 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+    }
+    h1 {
+        font-weight: 600;
+    }
+    h2 {
+        font-weight: 500;
     }
 
     a {
@@ -106,7 +140,7 @@
         font-size: 150%;
         color: #ffffff;
         margin-top: 10px;
-        font-weight: 700;
+        font-weight: 600;
         margin-bottom: 0px;    
         transition: transform .2s;
         position: relative;
@@ -117,7 +151,7 @@
         font-size: 90%;
         color: #6b6480;
         margin-top: 0px;
-        font-weight: lighter;
+        font-weight: 500;
 
         transition: transform .5s;
         position: relative;

@@ -12,12 +12,9 @@ export const load = async ({ fetch }) => {
         return linkData.data
     }
 
-    const username = 'Raaharja'
-
     return {
         links: fetchLinkData(),
         profile: fetchProfileData(),
-        username
     }
 }
 
