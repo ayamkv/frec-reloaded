@@ -95,6 +95,7 @@
 }
 
 .loader {  
+  opacity: 0;
   animation: 1s ease-out 1s 1 fadeDelay;
 }
 
