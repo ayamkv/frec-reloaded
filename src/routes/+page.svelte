@@ -234,7 +234,7 @@
   /* For mobile phones: */
 
   section ul li {
-        width: 15rem;
+        width: 16rem;
         max-width: 100%;
         height: 90px;
     }
@@ -265,7 +265,7 @@
     }
 
     section ul li {
-        width: 10rem;
+        width: 12rem;
         max-width: 50rem;
         height: 90px;
     }
