@@ -5,6 +5,11 @@
 
 </script>
 <svelte:head>
+  <style>
+    body {
+      background: #17171C;
+    }
+  </style>
     <link rel="icon" href="{data.publicUrl}/assets/{profile.profile_image}" />
 </svelte:head>
 <slot />
