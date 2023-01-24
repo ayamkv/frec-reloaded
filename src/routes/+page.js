@@ -10,7 +10,7 @@ export const load = async ({ fetch }) => {
         return profileData.data
     }
     const fetchLinkData = async () => {
-        const linkRes = await fetch(`${publicUrl}/items/link`)
+        const linkRes = await fetch(`${publicUrl}/items/link?sort=sort`)
         const linkData = await linkRes.json()
         return linkData.data
     }
