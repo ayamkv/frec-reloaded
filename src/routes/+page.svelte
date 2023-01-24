@@ -108,7 +108,7 @@
     }
     .codebyp {
         font-size: 0.75em;
-        margin-bottom: 4em;
+        margin-bottom: 2em;
         text-align: center;
         transition: all 0.2s ease-in-out;
     }
