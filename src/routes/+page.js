@@ -18,6 +18,7 @@ export const load = async ({ fetch }) => {
     return {
         links: fetchLinkData(),
         profile: fetchProfileData(),
+        publicUrl
     }
 }
 
