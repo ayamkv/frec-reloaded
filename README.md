@@ -13,5 +13,5 @@ it will be called <b> [linko](https://github.com/ayamkv/linko)</b>
 ## todo
 - custom admin page ``/admin``
 - followed by **CRUD** _create, read, update, delete_ ( i have to learn directus sdk 🙂 help )
-- env
+
 
