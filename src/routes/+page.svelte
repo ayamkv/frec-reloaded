@@ -1,51 +1,62 @@
 <script>
     
     import Icon from '@iconify/svelte';
+    import { onMount } from 'svelte';
+    import { fade, fly, slide } from 'svelte/transition';
     export let data;
+
     const { links } = data;
     const { profile } = data;
-
-
+    let ready = false;
+    onMount(() => ready = true);
+    let unique = {}
     console.log(profile)
 </script>
 
-<header>
-    <a
-      href={data.profile.social_link}
-      target="_blank"
-      rel="noreferrer"
-    >
-      <img
-        src="https://ee2poimw.directus.app/assets/{data.profile.profile_image}"
-        alt={data.profile.username}
-      />
-      <h1>{data.profile.username}</h1>
-      <p>{data.profile.description}</p>
-    </a>
-  </header>
-
-<!-- <h2>Links</h2>
--->
-
-
-
-<section>
-    <ul>
-        {#each links as link}
-            <a href={link.href} target="_blank" rel="noreferrer">
-            <li style="background: linear-gradient(to right, {link.left}, {link.right})">
-            <Icon icon={link.icon} style="color: white" />
-            </li>
-            <h2>{link.Title}</h2>
-            <span class="subtitle">{link.subtitle}</span>
+{#if ready}
+    <header transition:fade>
+        <a
+        href={data.profile.social_link}
+        target="_blank"
+        rel="noreferrer"
+        >
+        <img
+            src="https://ee2poimw.directus.app/assets/{data.profile.profile_image}"
+            alt={data.profile.username}
+            in:fly="{{ y: -100, duration: 1000 }}" />
+        <h1 in:fly="{{ y: 100, duration: 1100 }}">{data.profile.username}</h1>
+        <p in:fly="{{ y: 200, duration: 1350 }}">{data.profile.description}</p>
         </a>
-      {/each}
-    </ul>
-</section>
+    </header>
 
-<p class="codeby">made with <a href="https://github.com/ayamkv/frec-reloaded"><b>Linko</b></a> </p>
-<p class="codebyp">by @raaharja</p>
+    <!-- <h2>Links</h2>
+    -->
+
+    <section>
+        <ul>
+            {#each links as link}
+                <a href={link.href} target="_blank" rel="noreferrer" in:fly="{{ y: 200, duration: 1000 }}">
+                <li style="background: linear-gradient(to right, {link.left}, {link.right})" >
+                <div class="icon" in:fly="{{ y: 20, duration: 1300 }}"><Icon icon={link.icon} style="color: white"  /></div>
+                </li>
+                <h2 in:fly="{{ y: 100, duration: 1200 }}">{link.Title}</h2>
+                <div class="sub" in:fly="{{ y: 100, duration: 1300 }}"><span class="subtitle">{link.subtitle}</span></div>
+
+            </a>
+        {/each}
+        </ul>
+    </section>
+
+    <p class="codeby">made with <a href="https://github.com/ayamkv/frec-reloaded"><b>Linko</b></a> </p>
+    <p class="codebyp">by @raaharja</p>
+{/if}
+
+{#if !ready}
+    <h2 class="load" style="margin-top: 6em;" out:fade></h2>
+{/if}
+
 <style>
+
     .codeby {
         margin: 8em 1em 0em 0em;
         text-align: center;
@@ -120,15 +131,16 @@
     }
 
     section {
+        
         margin-top: 1em;
-        transform: translateX(-4%);
+        transform: translateX(-4.75%);
     }
     ul {
         list-style-type: none;
     }
 
     section ul {
-        margin-top: 1rem;
+        margin-top: 2rem;
         display: grid;
         justify-items: center;
         grid-template-columns: repeat(3, 1fr);
@@ -136,7 +148,7 @@
     }
 
     section ul h2 {
-        font-size: 150%;
+        font-size: 120%;
         color: #ffffff;
         margin-top: 10px;
         font-weight: 600;
@@ -147,7 +159,7 @@
     }
 
     section ul span {
-        font-size: 90%;
+        font-size: 80%;
         color: #6b6480;
         margin-top: 0px;
         font-weight: 500;
@@ -251,9 +263,6 @@
         grid-template-columns: repeat(2, 2fr);
     }
 }   
-
-
-
 
 @media screen and (max-width: 535px) { /* ou 767px */
     span {
