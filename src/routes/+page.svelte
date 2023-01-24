@@ -96,7 +96,7 @@
 
 .loader {  
   opacity: 0;
-  animation: 1s ease-out 1s 1 fadeDelay;
+  animation: 1s ease-out 0.2s 1 fadeDelay;
 }
 
     .codeby {
@@ -217,16 +217,16 @@
         transform: scale(1.05);
     }
 
-    section ul li:hover{
+    section ul li:hover, a:hover{
         transform: scale(1.05);
     }
 
     section ul li {
         background-color: blue;
-            width: 20rem;
-            height: 6rem;
-            max-width: 40rem;
-            min-height: 10px;
+          width: 20rem;
+          height: 6rem;
+          max-width: 40rem;
+          min-height: 10px;
         border-radius: 0.7rem;
 
         display: flex;
