@@ -72,7 +72,7 @@
         </ul>
     </section>
 
-    <p class="codeby">made with <a href="https://github.com/ayamkv/frec-reloaded"><b>Linko</b></a> </p>
+    <p class="codeby">made with <a href="https://github.com/ayamkv/frec-reloaded"><b>Raharja</b></a> </p>
     <p class="codebyp">by @raaharja</p>
 {/if}
 
