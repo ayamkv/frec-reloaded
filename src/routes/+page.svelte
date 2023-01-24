@@ -77,7 +77,7 @@
 {/if}
 
 {#if !ready}
-<div class="loader" style="margin-top: 6em; opacity:0.5; text-align:center" out:fade>
+<div class="loader" style="margin-top: 6em; text-align:center" out:fade>
     <h1 style="font-size: 3em;">⌛😶</h1>
     <h2 style="margin-top: 0.25em;" out:fade>mohon bersabar </h2>
 </div>
@@ -85,6 +85,18 @@
 {/if}
 
 <style>
+@keyframes fadeDelay {
+  0% {
+    transform: opacity(0);
+  }
+  100% {
+    transform: opacity(0.2);
+  }
+}
+
+.loader {  
+  animation: 1s ease-out 1s 1 fadeDelay;
+}
 
     .codeby {
         margin: 8em 1em 0em 0em;
