@@ -170,6 +170,7 @@
 
     a {
         text-decoration: none;
+        transition: all 0.2s ease-in-out;
     }
 
     section {
@@ -213,11 +214,12 @@
         color: #947edf;
     }
 
-    section ul h2:hover{
+    section ul h2:hover, a:hover{
         transform: scale(1.05);
     }
 
-    section ul li:hover, a:hover{
+    section ul li:hover {
+        outline: 1px solid #292936;
         transform: scale(1.05);
     }
 
