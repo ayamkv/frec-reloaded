@@ -1,7 +1,12 @@
 <script>
     import '../app.css'
-</script>
+    export let data;
+    const { profile } = data;
 
+</script>
+<svelte:head>
+    <link rel="icon" href="{data.publicUrl}/assets/{profile.profile_image}" />
+</svelte:head>
 <slot />
 
 <style>

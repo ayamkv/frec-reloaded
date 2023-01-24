@@ -1,13 +1,38 @@
 <script>
     
     import Icon from '@iconify/svelte';
+    import { loadIcons } from '@iconify/svelte';
     import { onMount } from 'svelte';
     import { fade, fly, slide } from 'svelte/transition';
     export let data;
 
-    const { links } = data;
-    const { profile } = data;
-    let ready = false;
+    const { links, profile } = data;
+    // const { profile } = data;
+    let ready = false;  
+    const iconsRes = data.links.map(item => item.icon);
+
+    loadIcons(iconsRes, (loaded, missing, pending, unsubscribe) => {
+        if (loaded.length) {
+            console.log(
+                `Icon ${iconsRes} have been loaded and is ready to be renderered.`
+            );
+            return;
+        }
+
+        if (missing.length) {
+            console.log(`Icon ${iconsRes} does not exist.`);
+            return;
+        }
+
+        if (pending.length) {
+            console.log('pending')
+            // Pending icons list in this example is empty.
+            // If you call loadIcons() with multiple icons, pending list might not be empty, but for one icon it is always empty.
+            //
+            // Callback is called when something changes, with 1 icon there can only be 2 type of changes: icon has loaded or icon is missing.
+        }
+        
+    });
     onMount(() => ready = true);
     let unique = {}
     console.log(profile)
@@ -21,7 +46,7 @@
         rel="noreferrer"
         >
         <img
-            src="https://ee2poimw.directus.app/assets/{data.profile.profile_image}"
+            src="{data.publicUrl}/assets/{data.profile.profile_image}"
             alt={data.profile.username}
             in:fly="{{ y: -100, duration: 1000 }}" />
         <h1 in:fly="{{ y: 100, duration: 1100 }}">{data.profile.username}</h1>
@@ -52,7 +77,7 @@
 {/if}
 
 {#if !ready}
-    <h2 class="load" style="margin-top: 6em;" out:fade></h2>
+    <h2 class="load" style="margin-top: 6em;" out:fade> </h2>
 {/if}
 
 <style>
