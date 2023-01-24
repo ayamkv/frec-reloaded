@@ -77,7 +77,11 @@
 {/if}
 
 {#if !ready}
-    <h2 class="load" style="margin-top: 6em;" out:fade> </h2>
+<div class="loader" style="margin-top: 6em; opacity:0.5; text-align:center" out:fade>
+    <h1 style="font-size: 3em;">⌛😶</h1>
+    <h2 style="margin-top: 0.25em;" out:fade>mohon bersabar </h2>
+</div>
+
 {/if}
 
 <style>
