@@ -234,7 +234,7 @@
   /* For mobile phones: */
 
   section ul li {
-        width: 16rem;
+        width: 15rem;
         max-width: 100%;
         height: 90px;
     }
@@ -256,16 +256,12 @@
 
 
 @media screen and (max-width: 535px) { /* ou 767px */
-    body {
-        font-size: 10px;
-    }
-    
     span {
         line-height: 1em;
     }
 
     section ul li {
-        width: 12rem;
+        width: 11.25rem;
         max-width: 50rem;
         height: 90px;
     }
