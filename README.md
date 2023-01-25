@@ -5,6 +5,11 @@
 #### i am currently learning svelte to built a better [frec](https://github.com//ayamkv/frec) linktree type of app that can be customizable
 it will be called <b> [linko](https://github.com/ayamkv/linko)</b>
 
+## demo sites
+- [vercel](https://raharja.vercel.app)
+- [netlify](https://raharja.netlify.app)
+
+
 
 ## what works
 - **directus cms**, by fetching the public api (no auth) 
