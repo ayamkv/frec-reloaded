@@ -1,7 +1,7 @@
 <script>
     
     import Icon from '@iconify/svelte';
-    import { concurrent } from 'svelte-typewriter'
+    import Typewriter from 'svelte-typewriter';
     import { loadIcons } from '@iconify/svelte';
     import { onMount } from 'svelte';
     import { fade, fly, blur } from 'svelte/transition';
@@ -59,7 +59,9 @@
             alt={data.profile.username}
             in:fly="{{ y: -100, duration: 1000 }}" />
         <h1 in:fly="{{ y: 100, duration: 1000 }}">{data.profile.username}</h1>
-        <p in:fly="{{ y: 200, duration: 1050 }}" use:concurrent="{{ interval: 50, delay: 30 }}">{data.profile.description}</p>
+        <Typewriter>
+            <p in:fly="{{ y: 200, duration: 1050 }}">{data.profile.description}</p>
+        </Typewriter>        
         </a>
     </header>
 
