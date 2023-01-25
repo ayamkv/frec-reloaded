@@ -2,12 +2,23 @@
 * {
 
     font-family: 'Poppins', sans-serif;
+    -webkit-tap-highlight-color: transparent;
 
+}
+
+@keyframes fadeDelay {
+    0% {
+      transform: opacity(0);
+    }
+    100% {
+      transform: opacity(0.2);
+    }
 }
 
 :global(a) {
     text-decoration: none;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {

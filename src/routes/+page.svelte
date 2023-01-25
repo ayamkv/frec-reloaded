@@ -1,15 +1,19 @@
 <script>
     
     import Icon from '@iconify/svelte';
+    import { concurrent } from 'svelte-typewriter'
     import { loadIcons } from '@iconify/svelte';
     import { onMount } from 'svelte';
-    import { fade, fly, slide } from 'svelte/transition';
+    import { fade, fly, blur } from 'svelte/transition';
+    import { backOut } from 'svelte/easing';
     export let data;
 
     const { links, profile } = data;
     // const { profile } = data;
-    let ready = false;  
+    let ready = false;
+
     const iconsRes = data.links.map(item => item.icon);
+    const colorRes = data.links.map(item => item.left);
 
     loadIcons(iconsRes, (loaded, missing, pending, unsubscribe) => {
         if (loaded.length) {
@@ -33,9 +37,13 @@
         }
         
     });
-    onMount(() => ready = true);
+    onMount(() => {
+        ready = true;
+		console.log('the component has mounted');
+	});
     let unique = {}
-    console.log(profile)
+
+    console.log(colorRes)
 </script>
 
 {#if ready}
@@ -44,13 +52,14 @@
         href={data.profile.social_link}
         target="_blank"
         rel="noreferrer"
+        onclick="return false" ondblclick="location=this.href"
         >
         <img
             src="{data.publicUrl}/assets/{data.profile.profile_image}"
             alt={data.profile.username}
             in:fly="{{ y: -100, duration: 1000 }}" />
-        <h1 in:fly="{{ y: 100, duration: 1100 }}">{data.profile.username}</h1>
-        <p in:fly="{{ y: 200, duration: 1350 }}">{data.profile.description}</p>
+        <h1 in:fly="{{ y: 100, duration: 1000 }}">{data.profile.username}</h1>
+        <p in:fly="{{ y: 200, duration: 1050 }}" use:concurrent="{{ interval: 50, delay: 30 }}">{data.profile.description}</p>
         </a>
     </header>
 
@@ -60,7 +69,7 @@
     <section>
         <ul>
             {#each links as link, i}
-                <a href={link.href} target="_blank" rel="noreferrer" in:fly="{{ y: 200, duration: 1000, delay: 50 * i }}">
+                <a href={link.href} target="_blank" rel="noreferrer" in:fly="{{ y: 200, duration: 1000, delay: 50 * i, easing:backOut }}">
                 <li style="background: linear-gradient(to right, {link.left}, {link.right})" >
                 <div class="icon" in:fly="{{ y: 20, duration: 1300 }}"><Icon icon={link.icon} style="color: white"  /></div>
                 </li>
@@ -72,31 +81,23 @@
         </ul>
     </section>
 
-    <p class="codeby">made with <a href="https://github.com/ayamkv/frec-reloaded"><b>Raharja</b></a> </p>
+    <p class="codeby"><a href="https://github.com/ayamkv/frec-reloaded"><b>Raharja</b></a>'s links 😱</p>
     <p class="codebyp">by @raaharja</p>
 {/if}
 
 {#if !ready}
-<div class="loader" style="margin-top: 6em; text-align:center" out:fade>
+<div id="loader"class="loader" style="margin-top: 6em; text-align:center; animation: 1s ease-in 0s 1 fadeDelay;" transiton:fade>
     <h1 style="font-size: 3em;">⌛😶</h1>
-    <h2 style="margin-top: 0.25em;" out:fade>mohon bersabar </h2>
+    <h2 style="margin-top: 0.25em;" transition:fade>mohon bersabar </h2>
 </div>
-
 {/if}
 
 <style>
-@keyframes fadeDelay {
-  0% {
-    transform: opacity(0);
-  }
-  100% {
-    transform: opacity(0.2);
-  }
-}
+
 
 .loader {  
-  opacity: 0;
-  animation: 1s ease-out 0.2s 1 fadeDelay;
+  opacity: 0.01;
+  animation: 1s linear fadeDelay;
 }
 
     .codeby {
@@ -109,6 +110,7 @@
     .codebyp {
         font-size: 0.75em;
         margin-bottom: 2em;
+        margin-right: 1em;
         text-align: center;
         transition: all 0.2s ease-in-out;
     }
@@ -119,7 +121,7 @@
 
     .codeby:hover, .codebyp:hover {
         transform: scale(1.1);
-        color: #6929ffcf;
+        color: #8d29ffcf;
     }
     
 
@@ -138,6 +140,7 @@
 
     }
     header h1 {
+        margin-bottom: 0;
         line-height: 0.1em;
         transition: all 0.1s linear;
     }
@@ -190,6 +193,10 @@
         gap: 4rem;
     }
 
+    section ul a {
+        transition: filter .5s ease-in-out, transform .3s linear;
+    }
+
     section ul h2 {
         font-size: 120%;
         color: #ffffff;
@@ -207,19 +214,26 @@
         margin-top: 0px;
         font-weight: 500;
 
-        transition: transform .5s;
+        transition: all .5s;
         position: relative;
     }
+
     section ul span:hover{
         color: #947edf;
     }
 
-    section ul h2:hover, a:hover{
+    section ul h2:hover{
+        color: #947edf;
+        transform: scale(1.03);
+    }
+    
+    section ul a:hover {
+        filter: hue-rotate(-25deg) saturate(1.5);
         transform: scale(1.05);
     }
 
     section ul li:hover {
-        outline: 1px solid #292936;
+        outline: 1.2px solid #71719675;
         transform: scale(1.05);
     }
 
@@ -237,14 +251,14 @@
         align-items: center;
 
         position: relative;
-        transition: transform .2s;
+        transition: transform .1s, outline .1s ease;
     }
 
     section ul li :global(svg) {
         font-size: 14em;
         width: 40px;
         height: 40px;
-        max-width: 40rem;
+        max-width: 40px;
         min-height: 50px;
     }
 
@@ -291,8 +305,9 @@
 
   section ul li {
         width: 15rem;
-        max-width: 100%;
+        max-width: 15rem;
         height: 90px;
+        margin-bottom: 0.2em;
     }
 
     section ul {
@@ -308,20 +323,24 @@
     }
 }   
 
-@media screen and (max-width: 535px) { /* ou 767px */
+@media screen and (max-width: 535px) { 
     span {
         line-height: 1em;
     }
 
     section ul li {
-        width: 11.25rem;
-        max-width: 50rem;
+        width: 10rem;
+        max-width: 40rem;
         height: 90px;
     }
 
     section ul {
         gap: 1rem;
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    section ul span {
+        font-size: 90%;
     }
 
     span.new {
