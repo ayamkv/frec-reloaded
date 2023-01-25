@@ -59,8 +59,8 @@
 
     <section>
         <ul>
-            {#each links as link}
-                <a href={link.href} target="_blank" rel="noreferrer" in:fly="{{ y: 200, duration: 1000 }}">
+            {#each links as link, i}
+                <a href={link.href} target="_blank" rel="noreferrer" in:fly="{{ y: 200, duration: 1000, delay: 50 * i }}">
                 <li style="background: linear-gradient(to right, {link.left}, {link.right})" >
                 <div class="icon" in:fly="{{ y: 20, duration: 1300 }}"><Icon icon={link.icon} style="color: white"  /></div>
                 </li>
