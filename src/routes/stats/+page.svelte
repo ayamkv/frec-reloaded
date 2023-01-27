@@ -6,7 +6,6 @@
     import { onMount } from 'svelte';
     import { fade, fly, blur } from 'svelte/transition';
     import { backOut } from 'svelte/easing';
-	import { updateClick } from './updateClick';
     export let data;
     const { links, profile } = data;
     
@@ -48,13 +47,13 @@
     
 </script>
 <svelte:head>
-    <title>{data.profile.username} | 🥶</title>
+    <title>Statistics | {data.profile.username}</title>
 </svelte:head>
 
 {#if ready}
     <header transition:fade>
         <a
-        href={data.profile.social_link}
+        href="/"
         target="_blank"
         rel="noreferrer"
         onclick="return false" ondblclick="location=this.href"
@@ -62,11 +61,11 @@
         <img
             src="{data.publicUrl}/assets/{data.profile.profile_image}"
             alt={data.profile.username}
-            in:fly="{{ y: -100, duration: 1000 }}" />
-        <h1 in:fly="{{ y: 100, duration: 1000 }}">{data.profile.username}</h1>
-        
-        <Typewriter delay=500>
-            <p in:fly="{{ y: 200, duration: 1050 }}">{data.profile.description}</p>
+            in:fly="{{ y: -100, duration: 500 }}" />
+            <h1 in:fly="{{ y: 100, duration: 500 }}">Statistics</h1>
+
+        <Typewriter delay=200>
+            <p in:fly="{{ y: 200, duration: 550 }}">{data.profile.username}</p>
         </Typewriter>    
   
         </a>
@@ -78,14 +77,20 @@
     <section>
         <ul>
             {#each links as link, i}
-                <a href={link.href} target="_blank" rel="noreferrer" in:fly="{{ y: 200, duration: 1000, delay: 50 * i, easing:backOut }}" on:click={() => updateClick(link.id)}>
+                <a href='/' target="_blank" rel="noreferrer" in:fly="{{ y: 200, duration: 1000, delay: 50 * i, easing:backOut }}" onclick="return false" ondblclick="location=this.href">
                 <li style="background: linear-gradient(to right, {link.left}, {link.right})" >
                 <div class="icon" in:fly="{{ y: 20, duration: 1300 }}"><Icon icon={link.icon} style="color: white"  /></div>
     
                 </li>
                 <li class="blurBackground" style="background: linear-gradient(to right, {link.left}, {link.right}); filter: blur(40px); transform: translateY(-6em); z-index: -1; opacity:0.35; position:absolute;" ></li>
                 <h2 in:fly="{{ y: 100, duration: 1200 }}">{link.Title}</h2>
-                <div class="sub" in:fly="{{ y: 100, duration: 1300 }}"><span class="subtitle">{link.subtitle}</span></div>
+                <div class="sub" in:fly="{{ y: 100, duration: 1300 }}">
+                <span class="subtitle">{link.subtitle}</span>
+                </div>
+                <div class="sub2">
+                    <span class="clicks">Clicks : {link.clicks}</span>
+                </div>
+
 
             </a>
         {/each}
@@ -94,7 +99,7 @@
 
     </section>
 
-    <p class="codeby"><a href="https://github.com/ayamkv/frec-reloaded"><b>Raharja</b></a>'s links 😱</p>
+    <p class="codeby"><a href="/"><b>Raharja</b></a>'s links 😱</p>
     <p class="codebyp">by @raaharja</p>
 {/if}
 
@@ -106,7 +111,10 @@
 {/if}
 
 <style>
-
+.sub2 {
+    text-align: right;
+    margin-bottom: 1em;
+}
 
 .loader {  
   opacity: 0.01;
