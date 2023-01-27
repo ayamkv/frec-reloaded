@@ -7,8 +7,8 @@
     import { fade, fly, blur } from 'svelte/transition';
     import { backOut } from 'svelte/easing';
     export let data;
-
     const { links, profile } = data;
+    
     // const { profile } = data;
     let ready = false;
 
@@ -44,6 +44,7 @@
     let unique = {}
 
     console.log(colorRes)
+    
 </script>
 
 {#if ready}
@@ -80,7 +81,9 @@
 
             </a>
         {/each}
+        
         </ul>
+
     </section>
 
     <p class="codeby"><a href="https://github.com/ayamkv/frec-reloaded"><b>Raharja</b></a>'s links 😱</p>
@@ -257,6 +260,8 @@
     }
 
     section ul li :global(svg) {
+        
+        filter: drop-shadow(0px 5px 10px rgba(255, 255, 255, 0.636));
         font-size: 14em;
         width: 40px;
         height: 40px;
