@@ -60,7 +60,7 @@
             alt={data.profile.username}
             in:fly="{{ y: -100, duration: 1000 }}" />
         <h1 in:fly="{{ y: 100, duration: 1000 }}">{data.profile.username}</h1>
-        <Typewriter>
+        <Typewriter delay=1500>
             <p in:fly="{{ y: 200, duration: 1050 }}">{data.profile.description}</p>
         </Typewriter>        
         </a>
