@@ -77,19 +77,21 @@
     <section>
         <ul>
             {#each links as link, i}
+            
                 <a href='/' target="_blank" rel="noreferrer" in:fly="{{ y: 200, duration: 1000, delay: 50 * i, easing:backOut }}" onclick="return false" ondblclick="location=this.href">
                 <li style="background: linear-gradient(to right, {link.left}, {link.right})" >
-                <div class="icon" in:fly="{{ y: 20, duration: 1300 }}"><Icon icon={link.icon} style="color: white"  /></div>
+                    <span class="new"><Icon icon="lucide:mouse-pointer-click" style="color: black; transform:translateY(2px) translateX(-2px)" width="20" /> Clicks : {link.clicks}</span>
+                <div class="icon" in:fly="{{ y: 20, duration: 1300 }}"><Icon icon={link.icon} style="color: white" width="40" /></div>
     
                 </li>
-                <li class="blurBackground" style="background: linear-gradient(to right, {link.left}, {link.right}); filter: blur(40px); transform: translateY(-6em); z-index: -1; opacity:0.35; position:absolute;" ></li>
+                <li class="blurBackground" style="background: linear-gradient(to right, {link.left}, {link.right}); filter: blur(10px); transform: translateY(-6em); z-index: -1; opacity:0.15; position:absolute;" ></li>
                 <h2 in:fly="{{ y: 100, duration: 1200 }}">{link.Title}</h2>
                 <div class="sub" in:fly="{{ y: 100, duration: 1300 }}">
                 <span class="subtitle">{link.subtitle}</span>
                 </div>
-                <div class="sub2">
-                    <span class="clicks">Clicks : {link.clicks}</span>
-                </div>
+
+                    
+
 
 
             </a>
@@ -111,10 +113,7 @@
 {/if}
 
 <style>
-.sub2 {
-    text-align: right;
-    margin-bottom: 1em;
-}
+
 
 .loader {  
   opacity: 0.01;
@@ -274,6 +273,7 @@
         align-items: center;
 
         position: relative;
+        
         transition: transform .1s, outline .1s ease, height 250ms ease;
     }
 
@@ -286,10 +286,10 @@
     section ul li :global(svg) {    
         /* filter: drop-shadow(0px 5px 10px rgba(255, 255, 255, 0.636)); */
         font-size: 14em;
-        width: 40px;
+        /* width: 40px;
         height: 40px;
         max-width: 40px;
-        min-height: 50px;
+        min-height: 50px; */
     }
 
 
@@ -305,13 +305,15 @@
         top: -0.5rem;
         right: 0.5rem;
         border-radius: .2rem;
-        background-color: white;
+        background: linear-gradient(30deg, rgba(215, 227, 255, 0.52) 0%, rgba(255, 255, 255, 0.92) 100%);
         z-index: 1;
         padding: .2rem 1rem;
         font-size: 1rem;
-        font-weight: 400;
+        font-weight: 600;
         color: black;
+        filter: drop-shadow(0px 0px 20px black);
     }
+
     span.disabled {
         position: absolute;
         top: -0.5rem;
@@ -328,7 +330,11 @@
         transform: scale(1);
         color: black;
     }
-
+    svg[data-icon='lucide:mouse-pointer-click'] {
+        font-size: 16px;
+        line-height: 20px;
+        width: 10px;
+    }
 
     @media only screen and (max-width: 768px) {
   /* For mobile phones: */
@@ -374,8 +380,8 @@
     }
 
     span.new {
-        top: -0.8rem;
-        right: 1rem;
+        top: -0.4rem;
+        right: 0.7rem;
         font-size: 0.8rem;
     }
     .codeby{
