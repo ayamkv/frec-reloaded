@@ -46,6 +46,9 @@
     console.log(colorRes)
     
 </script>
+<svelte:head>
+    <title>{data.profile.username} | 🥶</title>
+</svelte:head>
 
 {#if ready}
     <header transition:fade>
@@ -60,9 +63,11 @@
             alt={data.profile.username}
             in:fly="{{ y: -100, duration: 1000 }}" />
         <h1 in:fly="{{ y: 100, duration: 1000 }}">{data.profile.username}</h1>
-        <Typewriter delay=1500>
+        
+        <Typewriter delay=500>
             <p in:fly="{{ y: 200, duration: 1050 }}">{data.profile.description}</p>
-        </Typewriter>        
+        </Typewriter>    
+  
         </a>
     </header>
 
@@ -75,7 +80,9 @@
                 <a href={link.href} target="_blank" rel="noreferrer" in:fly="{{ y: 200, duration: 1000, delay: 50 * i, easing:backOut }}">
                 <li style="background: linear-gradient(to right, {link.left}, {link.right})" >
                 <div class="icon" in:fly="{{ y: 20, duration: 1300 }}"><Icon icon={link.icon} style="color: white"  /></div>
+    
                 </li>
+                <li class="blurBackground" style="background: linear-gradient(to right, {link.left}, {link.right}); filter: blur(40px); transform: translateY(-6em); z-index: -1; opacity:0.35; position:absolute;" ></li>
                 <h2 in:fly="{{ y: 100, duration: 1200 }}">{link.Title}</h2>
                 <div class="sub" in:fly="{{ y: 100, duration: 1300 }}"><span class="subtitle">{link.subtitle}</span></div>
 
@@ -135,13 +142,13 @@
         width: 124px;
         border-radius: 50%;
         margin-bottom: 32px;    
-
-        transition: transform .2s;
+        transition: transform .2s, filter 1s;
         position: relative;
     }
 
     header img:hover {
         transform: scale(1.1);
+        filter:hue-rotate(360deg) drop-shadow(0px 0px 40px #6200ff);
 
     }
     header h1 {
@@ -195,7 +202,7 @@
         display: grid;
         justify-items: center;
         grid-template-columns: repeat(3, 1fr);
-        gap: 4rem;
+        gap: 2rem;
     }
 
     section ul a {
@@ -234,13 +241,15 @@
     
     section ul a:hover {
         filter: hue-rotate(-25deg) saturate(1.5);
-        transform: scale(1.05);
+        transform: scale(1.02);
     }
 
     section ul li:hover {
+        height: 6.5em;
         outline: 1.2px solid #71719675;
-        transform: scale(1.05);
+        
     }
+
 
     section ul li {
         background-color: blue;
@@ -256,12 +265,17 @@
         align-items: center;
 
         position: relative;
-        transition: transform .1s, outline .1s ease;
+        transition: transform .1s, outline .1s ease, height 250ms ease;
     }
 
-    section ul li :global(svg) {
+    style ul li .blurBackground {
         
-        filter: drop-shadow(0px 5px 10px rgba(255, 255, 255, 0.636));
+        z-index: -1;
+        
+    }
+
+    section ul li :global(svg) {    
+        /* filter: drop-shadow(0px 5px 10px rgba(255, 255, 255, 0.636)); */
         font-size: 14em;
         width: 40px;
         height: 40px;
@@ -325,7 +339,7 @@
 
   @media screen and (max-width: 1125px) {
     section ul {
-        gap: 0.5rem;
+        gap: 1rem;
         grid-template-columns: repeat(2, 2fr);
     }
 }   
@@ -338,7 +352,7 @@
     section ul li {
         width: 10rem;
         max-width: 40rem;
-        height: 90px;
+        height: 80px;
     }
 
     section ul {
