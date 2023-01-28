@@ -1,10 +1,9 @@
 <script>
     
     import Icon from '@iconify/svelte';
-    import Typewriter from 'svelte-typewriter';
     import { loadIcons } from '@iconify/svelte';
     import { onMount } from 'svelte';
-    import { fade, fly, blur } from 'svelte/transition';
+    import { fade, fly} from 'svelte/transition';
     import { backOut } from 'svelte/easing';
 	import { updateClick } from './updateClick';
     export let data;
@@ -38,6 +37,41 @@
         }
         
     });
+    function typewriter(node, { speed = 3 }) {
+		const valid = (
+			node.childNodes.length === 1 &&
+			node.childNodes[0].nodeType === Node.TEXT_NODE
+		);
+
+		if (!valid) {
+			throw new Error(`This transition only works on elements with a single text node child`);
+		}
+
+		const text = node.textContent;
+		const duration = text.length / (speed * 0.01);
+		return {
+			duration,
+			tick: t => {
+                
+				const i = Math.trunc(text.length * t);
+				node.textContent = text.slice(0, i);
+			}
+		};
+	};
+    async function addClick(event) {
+        console.log('add click' + event)
+    }
+    // let opacity = 0
+    // function increment() {
+    //     let opacity = i++; // increment
+    //     console.log(opacity)
+    // }
+    // if (ready) {
+    //     setInterval(increment, 1000);
+    // } else {
+    //     console.log(opacity)
+    // };
+
     onMount(() => {
         ready = true;
 		console.log('the component has mounted');
@@ -64,10 +98,11 @@
             alt={data.profile.username}
             in:fly="{{ y: -100, duration: 1000 }}" />
         <h1 in:fly="{{ y: 100, duration: 1000 }}">{data.profile.username}</h1>
-        
-        <Typewriter delay=500>
-            <p in:fly="{{ y: 200, duration: 1050 }}">{data.profile.description}</p>
-        </Typewriter>    
+
+        <div in:fly="{{ y:120, duration: 1000 }}">
+            <p transition:typewriter style="margin-top: 20px">{data.profile.description}</p>
+
+    </div>
   
         </a>
     </header>
@@ -78,24 +113,30 @@
     <section>
         <ul>
             {#each links as link, i}
-                <a href={link.href} target="_blank" rel="noreferrer" in:fly="{{ y: 200, duration: 1000, delay: 50 * i, easing:backOut }}" on:click={() => updateClick(link.id)}>
+                
+                <a href={link.href} target="_blank" rel="noreferrer" in:fly="{{ y: 200, duration: 1000, delay: 80 * i, easing:backOut }}" on:click={() => {updateClick(link.id); console.log('button clicked ' + link.id)} }>
                 <li style="background: linear-gradient(to right, {link.left}, {link.right})" >
                 <div class="icon" in:fly="{{ y: 20, duration: 1300 }}"><Icon icon={link.icon} style="color: white"  /></div>
     
                 </li>
                 <li class="blurBackground" style="background: linear-gradient(to right, {link.left}, {link.right}); filter: blur(40px); transform: translateY(-6em); z-index: -1; opacity:0.35; position:absolute;" ></li>
-                <h2 in:fly="{{ y: 100, duration: 1200 }}">{link.Title}</h2>
-                <div class="sub" in:fly="{{ y: 100, duration: 1300 }}"><span class="subtitle">{link.subtitle}</span></div>
+                <h2 in:fly="{{ y: 100, duration: 500 }}">{link.Title}</h2>
+                <div class="sub" in:fly="{{ y: 50, duration: 700 }}"><span class="subtitle">{link.subtitle}</span></div>
+            
 
             </a>
+        
+        
         {/each}
         
         </ul>
 
     </section>
-
+<div class="footer" in:fade="{{ delay:400, duration:1000}}">
     <p class="codeby"><a href="https://github.com/ayamkv/frec-reloaded"><b>Raharja</b></a>'s links 😱</p>
     <p class="codebyp">by @raaharja</p>
+</div>
+
 {/if}
 
 {#if !ready}
@@ -106,13 +147,10 @@
 {/if}
 
 <style>
-
-
 .loader {  
-  opacity: 0.01;
+  opacity: 0.02;
   animation: 1s linear fadeDelay;
 }
-
     .codeby {
         margin: 8em 1em 0em 0em;
         text-align: center;
@@ -149,7 +187,7 @@
 
     header img:hover {
         transform: scale(1.1);
-        filter:hue-rotate(360deg) drop-shadow(0px 0px 40px #6200ff);
+        filter:hue-rotate(720deg) drop-shadow(0px 0px 40px #6a00ff61);
 
     }
     header h1 {
@@ -207,7 +245,7 @@
     }
 
     section ul a {
-        transition: filter .5s ease-in-out, transform .3s linear;
+        transition: filter .7s ease-in-out, transform .3s linear;
     }
 
     section ul h2 {
@@ -241,7 +279,7 @@
     }
     
     section ul a:hover {
-        filter: hue-rotate(-25deg) saturate(1.5);
+        filter: hue-rotate(-40deg) saturate(1.3);
         transform: scale(1.02);
     }
 
