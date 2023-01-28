@@ -13,23 +13,29 @@ it will be called <b> still looking for a better name</b>
 
 ## what works 
 - **directus cms**, by fetching the public api (no auth) 
-> using no auth because fetching the data manually is much faster than using the [directus js sdk](https://docs.directus.io/reference/sdk.html)
-although we still need to use the [sdk](https://docs.directus.io/reference/sdk.html) for updating clicks
+> using no auth because fetching the data manually is much faster than using the [directus js sdk](https://docs.directus.io/reference/sdk.html).
+although **we still need** to use the [sdk](https://docs.directus.io/reference/sdk.html) for updating clicks
 
 - clicks stats on ``/stats``
 
-- css layout all done, just need some little tweaks
 
 ## todo
 - custom admin page ``/admin`` 
+• with WYSIWYG **CRUD** 
+
 > maybe or will move ``/stats`` to ``/admin``
-- followed by **CRUD** _create, read, update, delete
+>
+> • **WYSIWYG** : What You See Is What You Get
+>
+> • **CRUD** : Create, Read, Update, Delete
+
+
 > i have to learn directus sdk 🙂 help. 
 **edit : it's actually challenging ~~fun~~
 
 
 ## Resources
- • **Iconify** for icons 
+ - **Iconify** for icons 
 • [https://iconify.design/](https://iconify.design/)
 
 
