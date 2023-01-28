@@ -3,24 +3,39 @@
 <br>
 very early development 
 #### i am currently learning svelte to built a better [frec](https://github.com//ayamkv/frec) linktree type of app that can be customizable
-it will be called <b> [linko](https://github.com/ayamkv/linko)</b>
+it will be called <b> still looking for a better name</b>
 
 ## demo sites
 - [vercel](https://raharja.vercel.app)
-- [netlify](https://raharja.netlify.app)
+- ~~[netlify](https://raharja.netlify.app)~~ 
 
 
 
 ## what works 
 - **directus cms**, by fetching the public api (no auth) 
-- css layout all done, just need some little tweaks
+> using no auth because fetching the data manually is much faster than using the [directus js sdk](https://docs.directus.io/reference/sdk.html).
+although **we still need** to use the [sdk](https://docs.directus.io/reference/sdk.html) for updating clicks
+
+- clicks stats on ``/stats``
+
 
 ## todo
-- custom admin page ``/admin``
-- followed by **CRUD** _create, read, update, delete_ ( i have to learn directus sdk 🙂 help )
+- custom admin page ``/admin`` 
+• with WYSIWYG **CRUD** 
+
+> maybe or will move ``/stats`` to ``/admin``
+>
+> • **WYSIWYG** : What You See Is What You Get
+>
+> • **CRUD** : Create, Read, Update, Delete
 
 
-## icons
+> i have to learn directus sdk 🙂 help. 
+**edit : it's actually challenging ~~fun~~
+
+
+## Resources
+ - **Iconify** for icons 
 • [https://iconify.design/](https://iconify.design/)
-• very helpful 
+
 
