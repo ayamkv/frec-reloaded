@@ -1,7 +1,6 @@
 // import { PUBLIC_DIRECTUS_URL } from '$env/static/public'
 let publicUrl = import.meta.env.VITE_DIRECTUS_URL;
 
-
 // import { Directus } from '@directus/sdk';
 
 // const directus = new Directus(publicUrl);
@@ -31,12 +30,13 @@ export const load = async ({ fetch }) => {
         const linkData = await linkRes.json()
         return linkData.data
     }
-    
+
 
     return {
         links: fetchLinkData(),
         profile: fetchProfileData(),
         publicUrl,
+
         
     }
 }

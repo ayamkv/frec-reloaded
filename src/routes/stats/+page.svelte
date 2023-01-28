@@ -78,13 +78,14 @@
         <ul>
             {#each links as link, i}
             
-                <a href='/' target="_blank" rel="noreferrer" in:fly="{{ y: 200, duration: 1000, delay: 50 * i, easing:backOut }}" onclick="return false" ondblclick="location=this.href">
-                <li style="background: linear-gradient(to right, {link.left}, {link.right})" >
-                    <span class="new"><Icon icon="lucide:mouse-pointer-click" style="color: black; transform:translateY(2px) translateX(-2px)" width="20" /> Clicks : {link.clicks}</span>
+                <a href='{link.href}' target="_blank" rel="noreferrer" in:fly="{{ y: 200, duration: 1000, delay: 50 * i, easing:backOut }}" onclick="return false" ondblclick="location=this.href">
+                <li style="background: linear-gradient(to right, {link.left}, {link.right});" >
+                   
+                    <span class="new"><Icon icon="lucide:mouse-pointer-click" style="color: black; transform:translateY(2px) translateX(-2px)" width="20" />{link.clicks}</span>
                 <div class="icon" in:fly="{{ y: 20, duration: 1300 }}"><Icon icon={link.icon} style="color: white" width="40" /></div>
-    
+                  
                 </li>
-                <li class="blurBackground" style="background: linear-gradient(to right, {link.left}, {link.right}); filter: blur(10px); transform: translateY(-6em); z-index: -1; opacity:0.15; position:absolute;" ></li>
+                <li class="blurBackground" style="background: linear-gradient(to right, {link.left}, {link.right}); filter: blur(10px); transform: translateY(-4em); z-index: -1; opacity:0.15; position:absolute;" ></li>
                 <h2 in:fly="{{ y: 100, duration: 1200 }}">{link.Title}</h2>
                 <div class="sub" in:fly="{{ y: 100, duration: 1300 }}">
                 <span class="subtitle">{link.subtitle}</span>
@@ -258,11 +259,9 @@
         
     }
 
-
     section ul li {
-        background-color: blue;
           width: 20rem;
-          height: 6rem;
+          height: 4rem;
           max-width: 40rem;
           min-height: 10px;
         border-radius: 0.7rem;
@@ -276,6 +275,9 @@
         
         transition: transform .1s, outline .1s ease, height 250ms ease;
     }
+
+
+
 
     style ul li .blurBackground {
         
@@ -330,11 +332,7 @@
         transform: scale(1);
         color: black;
     }
-    svg[data-icon='lucide:mouse-pointer-click'] {
-        font-size: 16px;
-        line-height: 20px;
-        width: 10px;
-    }
+
 
     @media only screen and (max-width: 768px) {
   /* For mobile phones: */
@@ -367,7 +365,7 @@
     section ul li {
         width: 10rem;
         max-width: 40rem;
-        height: 80px;
+        height: 70px;
     }
 
     section ul {
@@ -380,9 +378,12 @@
     }
 
     span.new {
+        
         top: -0.4rem;
         right: 0.7rem;
         font-size: 0.8rem;
+        padding-top: 0;
+        height: 2em;
     }
     .codeby{
         font-size: 14px;

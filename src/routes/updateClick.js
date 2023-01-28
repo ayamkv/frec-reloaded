@@ -1,6 +1,6 @@
 import { Directus } from '@directus/sdk';
 // import { env } from '$env/dynamic/private';
-
+// import { directus } from '$lib/server/directus';
 const publicUrl = import.meta.env.VITE_DIRECTUS_URL;
 const directusToken = import.meta.env.VITE_DIRECTUS_API_TOKEN;
 
@@ -17,9 +17,9 @@ if (!publicUrl) {
 // 		mode: 'json',
 // 		autoRefresh: false
 // 	}
-// };
+// // };
 
-// await directus.auth.static(directusToken);
+// // await directus.auth.static(directusToken);
 
 export const directus = new Directus(publicUrl, {
     auth: {
