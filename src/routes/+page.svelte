@@ -8,7 +8,8 @@
 	import { updateClick } from './updateClick';
     export let data;
     const { links, profile } = data;
-    
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    let interval = null;
     // const { profile } = data;
     let ready = false;
 
@@ -61,6 +62,58 @@
     async function addClick(event) {
         console.log('add click' + event)
     }
+
+    function onHover(event) {
+        let iteration = 0;
+        console.log('hover!')
+        clearInterval(interval);
+        
+        interval = setInterval(() => {
+            event.target.innerText = event.target.innerText
+            .split("")
+            .map((letter, index) => {
+                if(index < iteration) {
+                return event.target.dataset.value[index];
+                }
+            
+                return letters[Math.floor(Math.random() * 26)]
+            })
+            .join("");
+            
+            if(iteration >= event.target.dataset.value.length){ 
+            clearInterval(interval);
+            }
+            
+            iteration += 1 / 3;
+        }, 30);
+
+    }
+    function onHover2(event) {
+        const letters = "abcdefghijklmnopqrstuvwxyz";
+        let iteration = 0;
+        console.log('hover!')
+        clearInterval(interval);
+        
+        interval = setInterval(() => {
+            event.target.innerText = event.target.innerText
+            .split("")
+            .map((letter, index) => {
+                if(index < iteration) {
+                return event.target.dataset.value[index];
+                }
+            
+                return letters[Math.floor(Math.random() * 26)]
+            })
+            .join("");
+            
+            if(iteration >= event.target.dataset.value.length){ 
+            clearInterval(interval);
+            }
+            
+            iteration += 3;
+        }, 30);
+
+    }
     // let opacity = 0
     // function increment() {
     //     let opacity = i++; // increment
@@ -97,10 +150,10 @@
             src="{data.publicUrl}/assets/{data.profile.profile_image}"
             alt={data.profile.username}
             in:fly="{{ y: -100, duration: 1000 }}" />
-        <h1 in:fly="{{ y: 100, duration: 1000 }}">{data.profile.username}</h1>
+        <h1 in:fly="{{ y: 100, duration: 1000 }}" data-value={data.profile.username} on:mouseover={onHover} class="user">{data.profile.username}</h1>
 
         <div in:fly="{{ y:120, duration: 1000 }}">
-            <p transition:typewriter style="margin-top: 20px">{data.profile.description}</p>
+            <p transition:typewriter style="margin-top: 20px;" on:mouseover={onHover2} data-value={data.profile.description}>{data.profile.description}</p>
 
     </div>
   
@@ -147,6 +200,8 @@
 {/if}
 
 <style>
+
+
 .loader {  
   opacity: 0.02;
   animation: 1s linear fadeDelay;
@@ -180,7 +235,7 @@
         height: 124px;
         width: 124px;
         border-radius: 50%;
-        margin-bottom: 32px;    
+        margin-bottom: 15px;    
         transition: transform .2s, filter 1s;
         position: relative;
     }
@@ -192,10 +247,12 @@
     }
     header h1 {
         margin-bottom: 0;
-        line-height: 0.1em;
+        padding: 0 10px;
+        border-radius: 0.4em;
         transition: all 0.1s linear;
     }
     header p {
+        line-height: 0;
         font-size: 120%;
         color: #c5c2da;
         margin-bottom: 0.25em;
@@ -204,7 +261,8 @@
 
     header h1:hover {
         transform: scale(1.1);
-        color: #947edf;
+        color: #17171C;
+        background: #ffffff;
 
     }
 
