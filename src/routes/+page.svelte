@@ -1,5 +1,4 @@
 <script>
-    
     import Icon from '@iconify/svelte';
     import { loadIcons } from '@iconify/svelte';
     import { onMount } from 'svelte';
@@ -147,10 +146,11 @@
         rel="noreferrer"
         onclick="return false" ondblclick="location=this.href"
         >
+        <img class="clickme" src="/images/clickme.png"/>
         <img
             src="{data.publicUrl}/assets/{data.profile.profile_image}"
             alt={data.profile.username}
-            in:fly="{{ y: -100, duration: 1000 }}" />
+            in:fly="{{ y: -100, duration: 1000 }}" class="profile_image" />
         <h1 in:fly="{{ y: 100, duration: 1000 }}" data-value={data.profile.username} on:mouseover={onHover} class="user">{data.profile.username}</h1>
 
         <div in:fly="{{ y:120, duration: 1000 }}">
@@ -231,21 +231,73 @@
         color: #8d29ffcf;
     }
     
+    @keyframes clickpop {
+      0% {
+      transform: rotate(0deg);
+       opacity: 0;
+       top: 0px;
+       right: 58px;
+      }
+      50% {
+      transform: rotate(25deg);
+      opacity:1;
+        top: 40px;
+        right: 10%;
+        
+      }
+      85% {
+        transform: rotate(-5deg);
+        opacity:1;
+        right: 8%;
+        top: 90px;
+      }
+      100% {
+        transform: rotate(-10deg);
+        right: 30px;
+        opacity: 0;
+        top: 125px;
+      }
+    }
 
     header img {
         height: 124px;
         width: 124px;
-        border-radius: 50%;
+        
         margin-bottom: 10px;    
         transition: transform .2s, filter 1s;
         position: relative;
     }
+    
+    img.profile_image:not(.clickthumb) {
+      z-index: 1;
+      position: relative;
+      border-radius: 50%;
+    }
+    
+    img.clickme {
+    transition: all 1s;
+     pointer-events: none;
+     opacity:0;
+     z-index: 2;
+     top: 80px;
+     right: 58px;
+     position: absolute;
+     animation-name: clickpop;
+     animation-duration: 3.5s;
+     animation-delay: 1s;
+     animation-iteration-count: forwards;
+    }
+    
+    
 
-    header img:hover {
+    header img.profile_image:hover {
         transform: scale(1.1);
         filter:hue-rotate(720deg) drop-shadow(0px 0px 40px #6a00ff61);
 
     }
+    
+    
+    
     header h1 {
         margin-bottom: 0;
         padding: 0 10px;
