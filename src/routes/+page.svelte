@@ -5,7 +5,7 @@
     import { onMount } from 'svelte';
     import { fade, fly} from 'svelte/transition';
     import { backOut } from 'svelte/easing';
-	import { updateClick } from './updateClick';
+  	import { updateClick } from './updateClick';
     export let data;
     const { links, profile } = data;
     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -110,10 +110,11 @@
             clearInterval(interval);
             }
             
-            iteration += 3;
+            iteration += 2;
         }, 30);
 
     }
+    
     // let opacity = 0
     // function increment() {
     //     let opacity = i++; // increment
@@ -135,7 +136,7 @@
     
 </script>
 <svelte:head>
-    <title>{data.profile.username} | 🥶</title>
+    <title>{data.profile.username} | 🌵</title>
 </svelte:head>
 
 {#if ready}
@@ -173,8 +174,8 @@
     
                 </li>
                 <li class="blurBackground" style="background: linear-gradient(to right, {link.left}, {link.right}); filter: blur(40px); transform: translateY(-6em); z-index: -1; opacity:0.35; position:absolute;" ></li>
-                <h2 in:fly="{{ y: 100, duration: 500 }}">{link.Title}</h2>
-                <div class="sub" in:fly="{{ y: 50, duration: 700 }}"><span class="subtitle">{link.subtitle}</span></div>
+                <h2 in:fly="{{ y: 100, duration: 500 }}" on:mouseenter={onHover} data-value={link.Title}>{link.Title}</h2>
+                <div class="sub" in:fly="{{ y: 50, duration: 700 }}"><p class="subtitle">{link.subtitle}<p></div>
             
 
             </a>
@@ -235,7 +236,7 @@
         height: 124px;
         width: 124px;
         border-radius: 50%;
-        margin-bottom: 15px;    
+        margin-bottom: 10px;    
         transition: transform .2s, filter 1s;
         position: relative;
     }
@@ -317,7 +318,7 @@
 
     }
 
-    section ul span {
+    section ul span, section ul p {
         font-size: 80%;
         color: #6b6480;
         margin-top: 0px;
@@ -327,7 +328,7 @@
         position: relative;
     }
 
-    section ul span:hover{
+    section ul span:hover, section ul p:hover{
         color: #947edf;
     }
 
