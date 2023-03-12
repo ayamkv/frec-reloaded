@@ -8,6 +8,8 @@
     import { backOut } from 'svelte/easing';
     export let data;
     const { links, profile } = data;
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    let interval = null;
     
     // const { profile } = data;
     let ready = false;
@@ -65,7 +67,9 @@
             <h1 in:fly="{{ y: 100, duration: 500 }}">Statistics</h1>
 
         <Typewriter delay=200>
-            <p in:fly="{{ y: 200, duration: 550 }}">{data.profile.username}</p>
+            <p in:fly="{{ y: 200, duration: 550 }}" data-value="{data.profile.username}" on:mouseenter={() => {
+                console.log('hover');
+            }}>{data.profile.username}</p>
         </Typewriter>    
   
         </a>
