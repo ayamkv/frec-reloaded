@@ -258,6 +258,35 @@
         top: 125px;
       }
     }
+    
+    @keyframes clickpop2 {
+      0% {
+      transform: rotate(0deg);
+       opacity: 0;
+       top: 0px;
+       right: 20%;
+      }
+      50% {
+      transform: rotate(25deg);
+      opacity:1;
+        top: 40px;
+        right: 25%;
+        
+      }
+      85% {
+        transform: rotate(-5deg);
+        opacity:1;
+        right: 10%;
+        top: 15%;
+      }
+      100% {
+        transform: rotate(-10deg);
+        right: 30px;
+        opacity: 0;
+        top: 125px;
+      }
+    }    
+    
 
     header img {
         height: 124px;
@@ -282,7 +311,7 @@
      top: 80px;
      right: 58px;
      position: absolute;
-     animation-name: clickpop;
+     animation-name: clickpop2;
      animation-duration: 3.5s;
      animation-delay: 1s;
      animation-iteration-count: forwards;
@@ -473,7 +502,14 @@
 
     @media only screen and (max-width: 768px) {
   /* For mobile phones: */
-
+  img.clickme {
+     animation-name: clickpop;
+     animation-duration: 3.5s;
+     animation-delay: 1s;
+     animation-iteration-count: forwards;
+    }
+    
+  
   section ul li {
         width: 15rem;
         max-width: 15rem;
