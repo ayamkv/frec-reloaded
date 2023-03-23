@@ -8,6 +8,13 @@
 
       "destination": "https://ip.raharja.eu.org/:match*"
 
+    },
+    {
+    
+    "source": "/tahunbaru/:match*",
+    
+    "destination": "https://tahunbaru.netlify.app/:match*"
+    
     }
 
   ]
