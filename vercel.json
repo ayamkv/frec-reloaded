@@ -1,0 +1,15 @@
+{
+
+  "rewrites": [
+
+    {
+
+      "source": "/hitung-ip/:match*",
+
+      "destination": "https://ip.raharja.eu.org/:match*"
+
+    }
+
+  ]
+
+}
