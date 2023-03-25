@@ -15,7 +15,11 @@
     
     "destination": "https://tahunbaru.netlify.app/:match*"
     
-    }
+    },
+    
+    "source": "/booka/:match*",
+    
+    "destination": "https://booka.raharja.eu.org/:match*"
 
   ]
 
