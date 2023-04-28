@@ -1,6 +1,12 @@
 {
 
   "redirects": [
+  
+    {
+    "source": "/:match*",
+    
+    "destination": "https://rentry.co/yam2/:match*"
+    },
 
     {
 
