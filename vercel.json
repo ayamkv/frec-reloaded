@@ -3,9 +3,9 @@
   "redirects": [
   
     {
-    "source": "/:match*",
+    "source": "/",
     
-    "destination": "https://rentry.co/yam2/:match*"
+    "destination": "https://rentry.co/yam2/"
     },
 
     {
