@@ -5,7 +5,7 @@
     {
     "source": "/",
     
-    "destination": "https://rentry.co/yam2/"
+    "destination": "https://open.spotify.com/user/alm4b0oqld8z09rgtgcnzdhng?si=WeNIA_Z8R1OrPmJzo4HSOQ"
     },
 
     {
@@ -26,6 +26,10 @@
     "source": "/booka/:match*",
     
     "destination": "https://booka.raharja.eu.org/:match*"
+    },
+    {
+      "source": "/me/:match*",
+      "destination": "https://rentry.co/yam2"
     }
   ]
 
