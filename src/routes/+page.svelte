@@ -4,8 +4,10 @@
     import { fade, fly} from 'svelte/transition';
     import { backOut } from 'svelte/easing';
 
-    // export let data;
-    // const { links, profile } = data;
+    export let data;
+    const { profile } = data;
+    const profileRes = data.profile.items[0];
+
     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     let interval = null;
     // const { profile } = data;
@@ -134,31 +136,32 @@
     
 </script>
 <svelte:head>
-    <title>Maintenance | 🌵</title>
+    <title>{profileRes.display_name} - Maintenance | 🌵</title>
 </svelte:head>
 
 {#if ready}
-    <!-- <header transition:fade>
+    <header transition:fade>
         <a
-        href={data.profile.social_link}
+        href={profileRes.href}
         target="_blank"
         rel="noreferrer"
         onclick="return false" ondblclick="location=this.href"
         >
-        <img class="clickme" src="/images/clickme.png"/>
+        <!-- <img class="clickme" src="/images/clickme.png"/>
         <img
             src="{data.publicUrl}/assets/{data.profile.profile_image}"
-            alt={data.profile.username}
-            in:fly="{{ y: -100, duration: 1000 }}" class="profile_image" />
-        <h1 in:fly="{{ y: 100, duration: 1000 }}" data-value={data.profile.username} on:mouseover={onHover} class="user">{data.profile.username}</h1>
+            alt={profileRes.display_name}
+            in:fly="{{ y: -100, duration: 1000 }}" class="profile_image" /> -->
+        <h1 in:fly="{{ y: 100, duration: 1000 }}" data-value={profileRes.display_name} on:mouseover={onHover} class="user">{profileRes.display_name}</h1>
 
         <div in:fly="{{ y:120, duration: 1000 }}">
-            <p transition:typewriter style="margin-top: 20px;" on:mouseover={onHover2} data-value={data.profile.description}>{data.profile.description}</p>
+            <p transition:typewriter style="margin-top: 20px;" data-value={profileRes.bio}>{profileRes.bio}</p>
 
     </div>
   
         </a>
-    </header> -->
+    </header>
+
     <header in:fly="{{ y: 100, duration: 1000 }}">
         <div class="profile_image" style="margin-left: 1em; margin-bottom: 0.5em; text-align:center;"><iconify-icon icon="fluent-emoji:cat-face" width="90" height="90"></iconify-icon></div>
         <h1 style="text-align: center;">on maintenance</h1>
