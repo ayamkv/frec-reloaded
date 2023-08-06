@@ -1,42 +1,32 @@
-import { Directus } from '@directus/sdk';
-// import { env } from '$env/dynamic/private';
-// import { directus } from '$lib/server/directus';
-const publicUrl = import.meta.env.VITE_DIRECTUS_URL;
-const directusToken = import.meta.env.VITE_DIRECTUS_API_TOKEN;
+// import { Directus } from '@directus/sdk';
 
-if (!directusToken) {
-    throw Error("Make sure to add the Directus API Token in your environment variables.")
-}
+// const publicUrl = import.meta.env.VITE_DIRECTUS_URL;
+// const directusToken = import.meta.env.VITE_DIRECTUS_API_TOKEN;
 
-if (!publicUrl) {
-    throw Error("Make sure to add the Directus URL in your environment variables.")
-}
-// const directus = new Directus(publicUrl)
-// const config = {
-// 	auth: {
-// 		mode: 'json',
-// 		autoRefresh: false
-// 	}
-// // };
+// if (!directusToken) {
+//     throw Error("Make sure to add the Directus API Token in your environment variables.")
+// }
 
-// // await directus.auth.static(directusToken);
+// if (!publicUrl) {
+//     throw Error("Make sure to add the Directus URL in your environment variables.")
+// }
 
-export const directus = new Directus(publicUrl, {
-    auth: {
-        staticToken: directusToken
-    }
-});
+// export const directus = new Directus(publicUrl, {
+//     auth: {
+//         staticToken: directusToken
+//     }
+// });
 
-export async function updateClick(id) {
+// export async function updateClick(id) {
 
-	const data = await directus.items('link').readOne(id)
-	// alert(id)
-	const dataRes = data[0]
+// 	const data = await directus.items('link').readOne(id)
+// 	// alert(id)
+// 	const dataRes = data[0]
 
-    await directus.items('link').updateOne(id, {
-        clicks: data.clicks + 1
+//     await directus.items('link').updateOne(id, {
+//         clicks: data.clicks + 1
 		
-    })
+//     })
 
-  }
+//   }
 

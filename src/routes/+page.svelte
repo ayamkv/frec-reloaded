@@ -1,42 +1,41 @@
 <script>
-    import Icon from '@iconify/svelte';
-    import { loadIcons } from '@iconify/svelte';
+    import 'iconify-icon';
     import { onMount } from 'svelte';
     import { fade, fly} from 'svelte/transition';
     import { backOut } from 'svelte/easing';
-  	import { updateClick } from './updateClick';
-    export let data;
-    const { links, profile } = data;
+
+    // export let data;
+    // const { links, profile } = data;
     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     let interval = null;
     // const { profile } = data;
     let ready = false;
 
-    const iconsRes = data.links.map(item => item.icon);
-    const colorRes = data.links.map(item => item.left);
+    // const iconsRes = data.links.map(item => item.icon);
+    // const colorRes = data.links.map(item => item.left);
 
-    loadIcons(iconsRes, (loaded, missing, pending, unsubscribe) => {
-        if (loaded.length) {
-            console.log(
-                `Icon ${iconsRes} have been loaded and is ready to be renderered.`
-            );
-            return;
-        }
+    // loadIcons(iconsRes, (loaded, missing, pending, unsubscribe) => {
+    //     if (loaded.length) {
+    //         console.log(
+    //             `Icon ${iconsRes} have been loaded and is ready to be renderered.`
+    //         );
+    //         return;
+    //     }
 
-        if (missing.length) {
-            console.log(`Icon ${iconsRes} does not exist.`);
-            return;
-        }
+    //     if (missing.length) {
+    //         console.log(`Icon ${iconsRes} does not exist.`);
+    //         return;
+    //     }
 
-        if (pending.length) {
-            console.log('pending')
-            // Pending icons list in this example is empty.
-            // If you call loadIcons() with multiple icons, pending list might not be empty, but for one icon it is always empty.
-            //
-            // Callback is called when something changes, with 1 icon there can only be 2 type of changes: icon has loaded or icon is missing.
-        }
+    //     if (pending.length) {
+    //         console.log('pending')
+    //         // Pending icons list in this example is empty.
+    //         // If you call loadIcons() with multiple icons, pending list might not be empty, but for one icon it is always empty.
+    //         //
+    //         // Callback is called when something changes, with 1 icon there can only be 2 type of changes: icon has loaded or icon is missing.
+    //     }
         
-    });
+    // });
     function typewriter(node, { speed = 3 }) {
 		const valid = (
 			node.childNodes.length === 1 &&
@@ -83,7 +82,7 @@
             clearInterval(interval);
             }
             
-            iteration += 1 / 3;
+            iteration += 1 / 2;
         }, 30);
 
     }
@@ -109,7 +108,7 @@
             clearInterval(interval);
             }
             
-            iteration += 2;
+            iteration += 0;
         }, 30);
 
     }
@@ -131,15 +130,15 @@
 	});
     let unique = {}
 
-    console.log(colorRes)
+    // console.log(colorRes)
     
 </script>
 <svelte:head>
-    <title>{data.profile.username} | 🌵</title>
+    <title>Maintenance | 🌵</title>
 </svelte:head>
 
 {#if ready}
-    <header transition:fade>
+    <!-- <header transition:fade>
         <a
         href={data.profile.social_link}
         target="_blank"
@@ -159,12 +158,38 @@
     </div>
   
         </a>
+    </header> -->
+    <header in:fly="{{ y: 100, duration: 1000 }}">
+        <h1 class="user">on maintenance :)</h1>
+        <p>pindah database baru</p>
+        
+        <p style="margin-top: 20px;"> in the meantime check myyy <a style="display: inline; color:#fff000" href="https://open.spotify.com/user/alm4b0oqld8z09rgtgcnzdhng?si=WeNIA_Z8R1OrPmJzo4HSOQ">spotify</a></p>
     </header>
 
-    <!-- <h2>Links</h2>
-    -->
-
+    
+   
     <section>
+        <ul>
+
+                
+                <a href=about:blank target="_blank" rel="noreferrer" in:fly="{{ y: 200, duration: 1000, delay: 80, easing:backOut }}">
+                <li style="background: linear-gradient(to right, #fff000, #fff777)" >
+                <div class="icon" in:fly="{{ y: 20, duration: 1300 }}"> <iconify-icon icon="fluent-emoji:camel" width="70" height="70"></iconify-icon></div>
+                </li>
+                <li class="blurBackground" style="background: linear-gradient(to right, #fff000, #fff777); filter: blur(40px); transform: translateY(-6em); z-index: -1; opacity:0.35; position:absolute;" ></li>
+                <h2 in:fly="{{ y: 100, duration: 500 }}">Booka</h2>
+                <div class="sub" in:fly="{{ y: 50, duration: 700 }}"><p class="subtitle">Waktu Maghrib dan Imsyak seluruh Indonesia<p></div>
+              
+            
+
+            </a>
+        
+
+        
+        </ul>
+
+    </section>
+    <!-- <section>
         <ul>
             {#each links as link, i}
                 
@@ -185,7 +210,7 @@
         
         </ul>
 
-    </section>
+    </section> -->
 <div class="footer" in:fade="{{ delay:400, duration:1000}}">
     <p class="codeby"><a href="https://github.com/ayamkv/frec-reloaded"><b>Raharja</b></a>'s links 😱</p>
     <p class="codebyp">by @raaharja</p>
