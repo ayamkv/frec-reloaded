@@ -171,7 +171,7 @@
         <ul>
             {#each linksRes as link, i}
                 
-                <a href=about:blank target="_blank" rel="noreferrer" in:fly="{{ y: 200, duration: 1000, delay: 80, easing:backOut }}">
+                <a href={link.href} target="_blank" rel="noreferrer" in:fly="{{ y: 200, duration: 1000, delay: 80, easing:backOut }}">
                 <li style="background: linear-gradient(to right, {link.left_color}, {link.right_color})" >
                 <div class="icon" in:fly="{{ y: 20, duration: 1300 }}"> <iconify-icon icon="{link.icon}" width="40" height="40" style="color: white"></iconify-icon></div>
                 </li>
