@@ -9,8 +9,14 @@ export const load = async ({ fetch }) => {
         const profileData = await profileRes.json()
         return profileData
     }
+    const fetchLinkData = async () => {
+        const linkRes = await fetch(`${publicUrl}/api/collections/link/records`)
+        const linkData = await linkRes.json()
+        return linkData
+    }
     return {
         profile: fetchProfileData(),
+        links: fetchLinkData(),
         publicUrl
     }
 }

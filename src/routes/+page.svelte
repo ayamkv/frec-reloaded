@@ -5,8 +5,10 @@
     import { backOut } from 'svelte/easing';
 
     export let data;
-    const { profile } = data;
+    const { links, profile } = data;
     const profileRes = data.profile.items[0];
+    const linksRes = data.links.items;
+
 
     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     let interval = null;
@@ -147,11 +149,11 @@
         rel="noreferrer"
         onclick="return false" ondblclick="location=this.href"
         >
-        <!-- <img class="clickme" src="/images/clickme.png"/>
+        <img class="clickme" src="/images/clickme.png"/>
         <img
-            src="{data.publicUrl}/assets/{data.profile.profile_image}"
+            src="{data.publicUrl}/api/files/{profileRes.collectionId}/{profileRes.id}/{profileRes.profile_picture}"
             alt={profileRes.display_name}
-            in:fly="{{ y: -100, duration: 1000 }}" class="profile_image" /> -->
+            in:fly="{{ y: -100, duration: 1000 }}" class="profile_image" /> 
         <h1 in:fly="{{ y: 100, duration: 1000 }}" data-value={profileRes.display_name} on:mouseover={onHover} class="user">{profileRes.display_name}</h1>
 
         <div in:fly="{{ y:120, duration: 1000 }}">
@@ -162,64 +164,31 @@
         </a>
     </header>
 
-    <header in:fly="{{ y: 100, duration: 1000 }}">
-        <div class="profile_image" style="margin-left: 1em; margin-bottom: 0.5em; text-align:center;"><iconify-icon icon="fluent-emoji:cat-face" width="90" height="90"></iconify-icon></div>
-        <h1 style="text-align: center;">on maintenance</h1>
-
-        <div style="margin-left: 1.5em; text-align: center;">
-        <p>sedang pindah ke database baru 🐱🚀📦🗃</p>
-        
-        <p style="margin-top: 20px;"> in the meantime check myyy <a style="display: inline; color:#fff000" href="https://open.spotify.com/user/alm4b0oqld8z09rgtgcnzdhng?si=WeNIA_Z8R1OrPmJzo4HSOQ">spotify</a></p>
-
-        <p style="margin-top: 20px;">see here for my <a style="display: inline; color:#fff000" href="https://raharja.eu.org/me">random projects</a></p>
-        </div>
-    </header>
 
     
-   
+    
     <section>
         <ul>
-
+            {#each linksRes as link, i}
                 
                 <a href=about:blank target="_blank" rel="noreferrer" in:fly="{{ y: 200, duration: 1000, delay: 80, easing:backOut }}">
-                <li style="background: linear-gradient(to right, #34eb98, #34ebc9)" >
-                <div class="icon" in:fly="{{ y: 20, duration: 1300 }}"> <iconify-icon icon="fluent-emoji:camel" width="70" height="70"></iconify-icon></div>
+                <li style="background: linear-gradient(to right, {link.left_color}, {link.right_color})" >
+                <div class="icon" in:fly="{{ y: 20, duration: 1300 }}"> <iconify-icon icon="{link.icon}" width="40" height="40" style="color: white"></iconify-icon></div>
                 </li>
-                <li class="blurBackground" style="background: linear-gradient(to right, #fff000, #fff777); filter: blur(40px); transform: translateY(-6em); z-index: -1; opacity:0.35; position:absolute;" ></li>
-                <h2 in:fly="{{ y: 100, duration: 500 }}">Booka</h2>
-                <div class="sub" in:fly="{{ y: 50, duration: 700 }}"><p class="subtitle">Waktu Maghrib dan Imsyak seluruh Indonesia<p></div>
+                <li class="blurBackground" style="background: linear-gradient(to right, {link.left_color}, {link.right_color}); filter: blur(40px); transform: translateY(-6em); z-index: -1; opacity:0.35; position:absolute;" ></li>
+                <h2 in:fly="{{ y: 100, duration: 500 }}">{link.title}</h2>
+                <div class="sub" in:fly="{{ y: 50, duration: 700 }}">{link.subtitle}<p class="subtitle"><p></div>
               
             
 
             </a>
         
-
+            {/each}
         
         </ul>
 
     </section>
-    <!-- <section>
-        <ul>
-            {#each links as link, i}
-                
-                <a href={link.href} target="_blank" rel="noreferrer" in:fly="{{ y: 200, duration: 1000, delay: 80 * i, easing:backOut }}" on:click={() => {updateClick(link.id); console.log('button clicked ' + link.id)} }>
-                <li style="background: linear-gradient(to right, {link.left}, {link.right})" >
-                <div class="icon" in:fly="{{ y: 20, duration: 1300 }}"><Icon icon={link.icon} style="color: white"  /></div>
-    
-                </li>
-                <li class="blurBackground" style="background: linear-gradient(to right, {link.left}, {link.right}); filter: blur(40px); transform: translateY(-6em); z-index: -1; opacity:0.35; position:absolute;" ></li>
-                <h2 in:fly="{{ y: 100, duration: 500 }}" on:mouseenter={onHover} data-value={link.Title}>{link.Title}</h2>
-                <div class="sub" in:fly="{{ y: 50, duration: 700 }}"><p class="subtitle">{link.subtitle}<p></div>
-            
-
-            </a>
-        
-        
-        {/each}
-        
-        </ul>
-
-    </section> -->
+   
 <div class="footer" in:fade="{{ delay:400, duration:1000}}">
     <p class="codeby"><a href="https://github.com/ayamkv/frec-reloaded"><b>Raharja</b></a>'s links 😱</p>
     <p class="codebyp">by @raaharja</p>
@@ -236,7 +205,9 @@
 
 <style>
 
-
+.sub {
+    color: #a4a5b4;
+}
 .loader {  
   opacity: 0.02;
   animation: 1s linear fadeDelay;
@@ -435,7 +406,7 @@
 
     section ul span, section ul p {
         font-size: 80%;
-        color: #6b6480;
+        color: #beb5da;
         margin-top: 0px;
         font-weight: 500;
 
@@ -465,7 +436,7 @@
 
 
     section ul li {
-        background-color: blue;
+        background-color: rgb(248, 248, 255);
           width: 20rem;
           height: 6rem;
           max-width: 40rem;
