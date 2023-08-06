@@ -160,10 +160,16 @@
         </a>
     </header> -->
     <header in:fly="{{ y: 100, duration: 1000 }}">
-        <h1 class="user">on maintenance :)</h1>
-        <p>pindah database baru</p>
+        <div class="profile_image" style="margin-left: 1em; margin-bottom: 0.5em; text-align:center;"><iconify-icon icon="fluent-emoji:cat-face" width="90" height="90"></iconify-icon></div>
+        <h1 style="text-align: center;">on maintenance</h1>
+
+        <div style="margin-left: 1.5em; text-align: center;">
+        <p>sedang pindah ke database baru 🐱🚀📦🗃</p>
         
         <p style="margin-top: 20px;"> in the meantime check myyy <a style="display: inline; color:#fff000" href="https://open.spotify.com/user/alm4b0oqld8z09rgtgcnzdhng?si=WeNIA_Z8R1OrPmJzo4HSOQ">spotify</a></p>
+
+        <p style="margin-top: 20px;">see here for my <a style="display: inline; color:#fff000" href="https://raharja.eu.org/me">random projects</a></p>
+        </div>
     </header>
 
     
@@ -173,7 +179,7 @@
 
                 
                 <a href=about:blank target="_blank" rel="noreferrer" in:fly="{{ y: 200, duration: 1000, delay: 80, easing:backOut }}">
-                <li style="background: linear-gradient(to right, #fff000, #fff777)" >
+                <li style="background: linear-gradient(to right, #34eb98, #34ebc9)" >
                 <div class="icon" in:fly="{{ y: 20, duration: 1300 }}"> <iconify-icon icon="fluent-emoji:camel" width="70" height="70"></iconify-icon></div>
                 </li>
                 <li class="blurBackground" style="background: linear-gradient(to right, #fff000, #fff777); filter: blur(40px); transform: translateY(-6em); z-index: -1; opacity:0.35; position:absolute;" ></li>
