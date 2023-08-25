@@ -11,7 +11,9 @@ a customizable linktree type of app.
 
 
 ## what works 
-- **pocketbase**, by fetching the public api (no auth) 
+- **pocketbase**, by fetching the public api (no auth)
+
+> check `pb` branch
 
 - ~~clicks stats on ``/stats``~~
 
