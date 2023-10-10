@@ -24,6 +24,10 @@
     {
       "source": "/me/:match*",
       "destination": "https://rentry.co/yam2"
+    },
+    {
+      "source": "/spotify/:match*",
+      "destination": "https://open.spotify.com/user/alm4b0oqld8z09rgtgcnzdhng?si=i81PSiFbQkKHbPXTOf7swA"
     }
   ]
 
